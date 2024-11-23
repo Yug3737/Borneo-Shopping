@@ -1,0 +1,25 @@
+{% extends 'index.html'%}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/view_product.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Details</h1>
+        <div class="product">
+            <h2>{{ product.name }}</h2>
+            <p class="price">$ {{ product.price }}</p>
+            <p class="seller">Seller: {{ product.seller_name }}</p>
+            <p class="stars">Rating: {{ product.stars }} Stars</p>
+            <p class="description">{{ product.description }}</p>
+            <p class="seller-id">Seller ID: {{ product.seller_id }}</p>
+            <p class="product-id">Product ID: {{ product.id }}</p>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-btn">Back to Products</a>
+    </div>
+</body>

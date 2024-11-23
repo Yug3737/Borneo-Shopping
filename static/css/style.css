@@ -1,210 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 .topnav {
-    list-style-type: none;
-    position: fixed;
-    top: 0; 
-    right: 0;/* Align to top right */
-    padding: 5px;
-    background-color: white;
-    overflow: hidden;
-    text-align: center;
-    font-size: 16.5px;
-    /* margin-top: 35px; */
-}
-.topnav a{
-    color: black;
-    text-decoration: underline;
-}
-
-.topnav a:hover {
-    color: red;
-}
-
-.page {
-    display: none;
-}
-
-.page.active {
+    background-color: #333; /* Dark background for the navbar */
+    overflow: hidden; /* Ensures the links are contained within the navbar */
+    margin-top: 20px; /* Adds a little margin above the navbar */
+    padding: 10px 0; /* Adds padding to the top and bottom */
+    border-radius: 5px; /* Optional: Rounds the corners of the navbar */
+  }
+  
+  /* Styling for the links inside the navbar */
+  .topnav a {
+    color: #f2f2f2; /* Light text color */
+    text-align: center; /* Centers the text inside the link */
+    padding: 14px 20px; /* Adds padding to make the links bigger */
+    text-decoration: none; /* Removes the underline from links */
+    font-size: 16px; /* Sets the font size */
+    display: block; /* Makes the links fill the entire space within the navbar */
+    transition: background-color 0.3s; /* Smooth transition effect for hover */
+  }
+  
+  /* Styling for when a link is hovered over */
+  .topnav a:hover {
+    background-color: #ddd; /* Light background when hovered */
+    color: black; /* Dark text color when hovered */
+    border-radius: 4px; /* Rounds the corners when hovered */
+  }
+  
+  /* Ensures that each link is stacked vertically */
+  .topnav a + br {
     display: block;
-}
-
-li {
-    display: inline;
-}
-
-
-*{
-    padding: auto;
+    content: ''; /* Forces the line break to appear */
+  }
+  
+  /* Additional styling to center the navbar and ensure proper layout */
+  body {
     margin: 0;
-    box-sizing: border-box;
-    font-family: 'Mulish', sans-serif;   
-}
-body{
-    height: 100vh;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background color */
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background-color: #b73c3c;
-}
-
-.logo{
-    position: absolute;
-    top: 0;
-    left: 0px;
-    display: flex;
     align-items: center;
-    gap: 10px;
-
-}
-
-.logo img{
-    width: 80px;
-}
-
-.logo a{
-    top:0;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #464646;
-}
-
-.container{
-    width: 500px;
-    padding: 40px 32px;
-    border-radius: 8px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.container h1{
-    font-size: 1.6rem;
-}
-
-.container .social-login{
-    display: flex;
-    gap: 16px;
-    margin-top: 20px;
-}
-
-.container .social-login button{
-    padding: 6px;
-    width: 100%;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #080910;
-    border: 1px solid #1d1d1d;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.container .social-login button i{
-    font-size: 23px;
-}
-
-.container .social-login button:hover{
-    color: black;
-    border-color: crimson;
-}
-
-.container .divider{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.container .divider .line{
-    height: 1px;
-    width: 100%;
-    background: #1d1d1d;
-    opacity: 0.2;
-    margin: 30px 0 16px;
-}
-
-
-.container form label{
-    color: #1d1d1d;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.03rem;
-    display: block;
-    margin-top: 12px;
-}
-
-.container form .custom-input{
-    position: relative;
-}
-
-.container form .custom-input input{
-    color: black;
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-    height: 46px;
-    letter-spacing: 0.03rem;
-    border: 1px solid #1d1d1d;
-    background: transparent;
-    outline: none;
-    border-radius: 8px;
-    text-indent: 20px;
-    margin-top: 6px;
-    transition: all 0.3s ease;  
-}
-
-.container form .custom-input input:focus{
-border-color: crimson;
-}
-.container form .custom-input i{
-    position: absolute;
-    font-size: 28px;
-    right: 10px;
-    top: 14px;
-    transition: all 0.3s ease;
-}
-
-.container form .custom-input input:focus + i{
-    color: crimson;
-}
-
-.container form .login{
-    width: 100%;
-    margin-top: 30px;
-    background: black;
-    color: crimson;
-    line-height: 50px;
-    font-size: 18px;
-    letter-spacing: 0.025em;
-    cursor: pointer;
-    font-weight: 800;
-    border-radius: 8px;
-    box-sizing: 0 5px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.container form .login:hover{
-    background: black;
-}
-
-.container .links{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.container .links a{
-    color: black;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    text-underline-offset: 6px;
-    text-decoration-color: black;
-}
-
-.container .links a{
-    text-decoration: underline;
-}
+  }
+  
+  /* Optional: Add some space between the topnav and the form */
+  .container {
+    margin-top: 50px; /* Adds spacing between navbar and content */
+  }

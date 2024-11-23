@@ -7,11 +7,7 @@ import re
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
-<<<<<<< HEAD
 # import MySQLdb.cursors
-=======
-#import MySQLdb.cursors
->>>>>>> 0ab190ff0086ac673b678654ae80ab0919b2283e
 
 # import pymysql.cursors as cursors
 from dotenv import load_dotenv
