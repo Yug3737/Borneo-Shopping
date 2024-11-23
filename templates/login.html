@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="navbar.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+            /*body {
+                background-color: crimson;
+            }*/
+            .container {
+                background-color: white;
+            }
+            body{
+                background-color: white;
+                background-size: cover;
+            }
+        </style>
+        <div class="topnav">
+            <div class="logo">
+                <img src="assets/dumbbell.png">
+                <a href="index.html">WeLoveGainz</a>
+            </div>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="workoutLibrary.html">Library</a></li>
+                <li><a href="nutrition.html">Nutrition</a></li>
+                <li><a href="progresstracker.html">Progress</a></li>
+                <li><a href="challenges.html">Challenges</a></li>
+                <li><a href="forumPosts.html">Community</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+    <body>
+        <div class="container">
+            <h1 class="headone">Login to your account</h1>
+            <div class="social-login">
+                <button class="google">
+                    <i class='bx bxl-google'></i>
+                    Use Google
+                </button>
+                <button class="google">
+                    <i class='bx bxl-apple'></i>
+                    Use Apple
+                </button>
+            </div>
+            <div class="divider">
+                <div class="line"></div>
+                <p>Or</p>
+                <div class="line"></div>
+            </div>
+                <form method="post" name="login-form" action='' id="myForm" >
+                    <label for="inp_email">Email:</label>
+                    <div class="custom-input">
+                        <input type="email" name="Email" id="inp_email"
+                        placeholder="Your Email"
+                        autocomplete="off">
+                        <i class='bx bx-at'></i>
+                    </div>
+                    <label for="inp_password">Password:</label>
+                    <div class="custom-input">
+                        <input type="password" name="Password" id="inp_password"
+                        placeholder="Your Password">
+                        <i class='bx bxs-lock-alt' ></i>   
+                     </div>
+                     <input type="submit" value="Submit" id="submit" class="login">
+                     <div class="links">
+                        <!-- <a href="#">Reset Password</a> -->
+                        <a href="registration.html">Don't Have an account?</a>
+                     </div>
+                </form>
+            </div>
+
+        </div>
+
+        <script src="login.js"></script>
+        
+        
+    </body> <!-- Everything above this was in the heading, not body, recheck tags -->
+
+
+ </html>
