@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="navbar.css" >
+  <style>
+
+  .page {
+      display: none;
+  }
+
+  .page.active {
+      display: block;
+  }
+
+  li {
+    display: inline;
+  }
+
+  *{
+      padding: auto;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Mulish', sans-serif;   
+  }
+  body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    margin-top: 245px;
+    background-color: #b73c3c;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    width: 60%; /* Adjust width as needed */
+    max-width: 1200px; /* Limit maximum width */
+    margin: 60px auto 20px; /* Center the container horizontally and add margin for spacing */
+    padding: 20px; /* Adjust padding for spacing */
+    background-color: #e8e8e8; /* Background color for the content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow to the container */
+  }
+
+  h1, p {
+    margin: 1em auto;
+    text-align: center;
+  }
+   
+  form {
+    width: 95%;
+    max-width: 1920px;
+    min-width: 300px;
+    margin: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 2em;
+    background-color: white;
+  }
+  
+  fieldset {
+    border: none;
+    padding: 2rem 0;
+    border-bottom: 3px solid #313134;
+  }
+  
+  fieldset:last-of-type {
+    border-bottom: none;
+  }
+  
+  label {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  
+  input,
+  textarea,
+  select {
+    margin: 10px 0 0 0;
+    width: 100%;
+    min-height: 2em;
+  }
+  
+  input, textarea {
+    background-color: #7c7c80;
+    border: 1px solid #0a0a23;
+    color: #ffffff;
+  }
+  
+  .inline {
+    width: unset;
+    margin: 0 0.5em 0 0;
+    vertical-align: middle;
+    display: inline; 
+  }
+  
+  input[type="submit"] {
+    display: block;
+    width: 80%;
+    margin: 1em auto;
+    height: 2em;
+    font-size: 1.1rem;
+    background-color: crimson;
+    border-color: crimson;
+    min-width: 300px;
+  }
+  
+  input[type="file"] {
+    padding: 1px 2px;
+  }
+  
+
+  </style>
+    <div class="topnav">
+      <div class="logo">
+          <img src="assets/dumbbell.png">
+          <a href="index.html">WeLoveGainz</a>
+      </div>
+      <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li><a href="workoutLibrary.html">Library</a></li>
+          <li><a href="nutrition.html">Nutrition</a></li>
+          <li><a href="progresstracker.html">Progress</a></li>
+          <li><a href="challenges.html">Challenges</a></li>
+          <li><a href="forumPosts.html">Community</a></li>
+          <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </head>
+
+  <body>
+    <div class="container">
+    <h1 class="headone">Registration Form</h1>
+
+    <p>Please fill out this form with the required information</p>
+  
+    <form method="post" name="contact-form" action='https://script.google.com/macros/s/AKfycbwCIwP15oF7KPP-ybYWvsuulNRT0DXCGzx50fcPccQhnFquNt69MxTBt2Mv30-C2xRQig/exec'>
+
+      <fieldset>
+        <label for="first-name">Enter Your First Name: <input id="first-name" name="First Name" type="text" required /></label>
+        <label for="last-name">Enter Your Last Name: <input id="last-name" name="Last Name" type="text" required /></label>
+        <label for="email">Enter Your Email: <input id="email" name="Email" type="email" required /></label>
+        <label for="new-password">Create a New Password: <input id="new-password" name="Password" type="password" required /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Account type (required)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" checked /> Personal</label>
+        <label for="team-account"><input id="Team-account" type="radio" name="account-type" class="inline" /> Team</label>
+      </fieldset>
+
+      <fieldset>
+        <label for="age">Input your age (years): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">How did you hear about us?
+          <select id="referrer" name="referrer">
+            <option value="">(select one)</option>
+            <option value="1">HIC Class</option>
+            <option value="2">One of our team members</option>
+            <option value="3">Just stumbled upon</option>
+            <option value="4">Other</option>
+          </select>
+        </label>
+        <label for="bio">Provide a bio:
+          <textarea id="bio" name="bio" rows="3" cols="30"></textarea>
+        </label>
+      </fieldset>
+
+      
+      <input type="submit" value="Submit" id="submit" />
+    </form>
+  </div>
+
+  <script src="registration.js"></script>
+
+  </body>
+</html>
