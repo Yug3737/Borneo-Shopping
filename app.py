@@ -5,25 +5,28 @@
 import os
 import re
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-
-#import MySQLdb.cursors
-
-# import pymysql.cursors as cursors
-from dotenv import load_dotenv
-
-load_dotenv()
+import MySQLdb.cursors
 
 app = Flask(__name__)
 
-app.secret_key = os.getenv("BORNEO_SECRET_KEY")
+input_file = '.env'
+variables = {}
+with open(input_file, 'r') as f:
+    for line in f:
+        line = line.strip()
+        if '=' in line:
+            key, value = line.split('=', 1)
+            variables[key] = value
 
-app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
-app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
-app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
-app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
+BORNEO_SECRET_KEY = variables['BORNEO_SECRET_KEY']
+MYSQL_HOST = variables['MYSQL_HOST']
+MYSQL_USER = variables['MYSQL_USER']
+MYSQL_DB = variables['MYSQL_DB']
 
-#mysql = MySQL(app)
+
+mysql = MySQL(app)
 
 
 @app.route("/")
@@ -69,4 +72,9 @@ def logged_in_seller():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=3103)
+
+# Comments
+# Wanna be able to buy, if click buy, 
+# before buying, login page, after purchse, give success.html
+# 
