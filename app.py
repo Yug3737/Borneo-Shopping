@@ -7,7 +7,7 @@ import re
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
-import MySQLdb.cursors
+#import MySQLdb.cursors
 
 # import pymysql.cursors as cursors
 from dotenv import load_dotenv
@@ -23,7 +23,7 @@ app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
 app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
 app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
 
-mysql = MySQL(app)
+#mysql = MySQL(app)
 
 
 @app.route("/")
@@ -49,6 +49,23 @@ def register_new_seller():
 @app.route("/register_new_buyer")
 def register_new_buyer():
     pass
+
+@app.route("/buyer_login")
+def buyer_login():
+    return render_template("buyer_login.html")
+
+@app.route("/logged_in_buyer")
+def logged_in_buyer():
+    pass
+
+@app.route("/seller_login")
+def seller_login():
+    return render_template("seller_login.html")
+
+@app.route("/logged_in_seller")
+def logged_in_seller():
+    pass
+
 
 
 if __name__ == "__main__":
