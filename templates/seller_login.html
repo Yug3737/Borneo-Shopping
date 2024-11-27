@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Buyer Login Page</title>
+    <title>Seller Login Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/buyer_seller.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="headone">Returning Buyer Login</h1>
+        <h1 class="headone">Returning Seller Login</h1>
 
-        <p>Please fill out this form with the account information</p>
-        <form action="/logged_in_buyer" method="POST">
+        <p>Please fill out this form with your account information</p>
+        <form action="/logged_in_seller" method="POST">
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email Address:</label>

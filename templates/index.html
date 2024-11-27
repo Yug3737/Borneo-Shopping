@@ -1,65 +1,32 @@
-<<<<<<< Updated upstream
-<!DOCTYPE html>
-<html lang="en">
+<<<<<<< Updated upstream <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Borneo Shopping</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Borneo Shopping</title>
+    </head>
 
-<body>
-    <h1>Borneo Shopping</h1>
-    <br>
-    <div class="topnav">
-        <a href="{{url_for('index')}}">Home</a>
+    <body>
+        <h1>Borneo Shopping</h1>
         <br>
-        <a href="{{url_for('new_buyer')}}">New Buyer Sign Up</a>
+        <div class="topnav">
+            <a href="{{url_for('index')}}">Home</a>
+            <br>
+            <a href="{{url_for('new_buyer')}}">New Buyer Sign Up</a>
+            <br>
+            <a href="{{url_for('new_seller')}}">New Seller Sign Up</a>
+            <br>
+            <a href="{{url_for('buyer_login')}}">Buyer Login</a>
+            <br>
+            <a href="{{url_for('seller_login')}}">Seller Login</a>
+        </div>
         <br>
-        <a href="{{url_for('new_seller')}}">New Seller Sign Up</a>
-    </div>
-    <br>
-    {% block body %}
+        {% block body %}
 
-    <p>This is a Borneo Flask APp</p>
-    {% endblock %}
-</body>
+        <p>This is a Borneo Flask APp</p>
+        {% endblock %}
+    </body>
 
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navbar.css">
-    <title>Borneo Shopping</title>
-</head>
-
-<body>
-    <!-- <h1>Borneo Shopping</h1> -->
-    <br>
-    <div class="topnav">
-
-        <ul>
-        <li><a href="{{url_for('index')}}">Home</a></li>
-        <br>
-        <li><a href="{{url_for('new_buyer')}}">New Buyer Sign Up</a></li>
-        <br>
-        <li><a href="{{url_for('new_seller')}}">New Seller Sign Up</a></li>
-        <br>
-        <li><a href="{{url_for('buyer_login')}}">Buyer Login Form</a></li>
-        <br>
-        <li><a href="{{url_for('seller_login')}}">Seller Login Form</a></li>
-        </ul>
-    </div>
-    <br>
-    {% block body %}
-
-    <p>This is a Borneo Flask APp</p>
-    {% endblock %}
-</body>
-
->>>>>>> Stashed changes
-</html>
+    </html>
