@@ -1,32 +1,24 @@
-<<<<<<< Updated upstream <!DOCTYPE html>
-    <html lang="en">
+{% extends 'nav.html' %}
+{% block body %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title>Borneo Shopping</title>
-    </head>
 
-    <body>
-        <h1>Borneo Shopping</h1>
-        <br>
-        <div class="topnav">
-            <a href="{{url_for('index')}}">Home</a>
-            <br>
-            <a href="{{url_for('new_buyer')}}">New Buyer Sign Up</a>
-            <br>
-            <a href="{{url_for('new_seller')}}">New Seller Sign Up</a>
-            <br>
-            <a href="{{url_for('buyer_login')}}">Buyer Login</a>
-            <br>
-            <a href="{{url_for('seller_login')}}">Seller Login</a>
-        </div>
-        <br>
-        {% block body %}
+<body>
 
-        <p>This is a Borneo Flask APp</p>
-        {% endblock %}
-    </body>
+    <table border="1" cellpadding="5" cellspacing="5">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        {% for row in data%}
+        <tr>
+            {% for d in row %}
+            <td>{{d}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 
-    </html>
+</body>
+
+</html>
+{% endblock %}
