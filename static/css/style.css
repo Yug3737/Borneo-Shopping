@@ -1,48 +1,41 @@
 .topnav {
-    background-color: #333; /* Dark background for the navbar */
-    overflow: hidden; /* Ensures the links are contained within the navbar */
-    margin-top: 20px; /* Adds a little margin above the navbar */
-    padding: 10px 0; /* Adds padding to the top and bottom */
-    border-radius: 5px; /* Optional: Rounds the corners of the navbar */
-  }
-  
-  /* Styling for the links inside the navbar */
-  .topnav a {
-    color: #f2f2f2; /* Light text color */
-    text-align: center; /* Centers the text inside the link */
-    padding: 14px 20px; /* Adds padding to make the links bigger */
-    text-decoration: none; /* Removes the underline from links */
-    font-size: 16px; /* Sets the font size */
-    display: block; /* Makes the links fill the entire space within the navbar */
-    transition: background-color 0.3s; /* Smooth transition effect for hover */
-  }
-  
-  /* Styling for when a link is hovered over */
-  .topnav a:hover {
-    background-color: #ddd; /* Light background when hovered */
-    color: black; /* Dark text color when hovered */
-    border-radius: 4px; /* Rounds the corners when hovered */
-  }
-  
-  /* Ensures that each link is stacked vertically */
-  .topnav a + br {
-    display: block;
-    content: ''; /* Forces the line break to appear */
-  }
-  
-  /* Additional styling to center the navbar and ensure proper layout */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light background color */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Optional: Add some space between the topnav and the form */
-  .container {
-    margin-top: 50px; /* Adds spacing between navbar and content */
-  }
+  background-color: #333; /* Dark background for the navbar */
+  overflow: hidden; /* Ensures the links are contained within the navbar */
+  margin-top: 20px; /* Adds a little margin above the navbar */
+  padding: 10px 0; /* Adds padding to the top and bottom */
+  border-radius: 5px; /* Optional: Rounds the corners of the navbar */
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: center; /* Centers the links horizontally */
+}
+
+.topnav a {
+  color: #f2f2f2; /* Light text color */
+  text-align: center; /* Centers the text inside the link */
+  padding: 14px 20px; /* Adds padding to make the links bigger */
+  text-decoration: none; /* Removes the underline from links */
+  font-size: 16px; /* Sets the font size */
+  transition: background-color 0.3s; /* Smooth transition effect for hover */
+}
+
+/* Styling for when a link is hovered over */
+.topnav a:hover {
+  background-color: #ddd; /* Light background when hovered */
+  color: black; /* Dark text color when hovered */
+  border-radius: 4px; /* Rounds the corners when hovered */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional: Add some space between the topnav and the form */
+.container {
+  margin-top: 50px; /* Adds spacing between navbar and content */
+}
