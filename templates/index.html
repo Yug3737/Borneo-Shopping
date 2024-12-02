@@ -7,13 +7,17 @@
     <table border="1" cellpadding="5" cellspacing="5">
         <tr>
             <th>Name</th>
-            <th>Price</th>
+            <th>Price($)</th>
+            <th>View Details </th>
         </tr>
-        {% for row in data%}
+        {% for row in data %}
         <tr>
-            {% for d in row %}
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td><a href="{{ url_for('view_product', product_id=row[2] )}}">Click Here</a></td>
+            <!-- {% for d in row %}
             <td>{{d}}</td>
-            {% endfor %}
+            {% endfor %} -->
         </tr>
         {% endfor %}
     </table>

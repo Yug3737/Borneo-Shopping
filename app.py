@@ -37,13 +37,34 @@ mysql = MySQL(app)
 @app.route("/")
 def index():
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT name, price from product")
+    cursor.execute("SELECT name, price, ID from product")
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()
     print(data)
     return render_template("index.html", data=data)
 
+@app.route("/product/<int:product_id>", methods=['GET'])
+def view_product(product_id):
+    cursor = mysql.connection.cursor()
+    query = 'SELECT * FROM product WHERE ID = %s'
+    cursor.execute(query, (product_id,))
+    mysql.connection.commit()
+    product_data = cursor.fetchone()
+    print(product_data)
+    cursor.close()
+    return render_template('view_product.html', product=product_data)
+    print(data)
+
+@app.route("/<int:product_id>/choose_payment_method", methods=['GET', 'POST'])
+def choose_payment_method(product_id):
+    return render_template('choose_payment_method.html')
+
+@app.route("/buy_product/<int:product_id>", methods=['GET', 'POST'])
+def buy_product(product_id, buyer_id):
+    cursor = mysql.connection.cursor()
+
+    
 
 @app.route("/new_buyer", methods= ['POST', 'GET'])
 def new_buyer():

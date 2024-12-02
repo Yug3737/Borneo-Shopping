@@ -12,16 +12,23 @@
     <div class="container">
         <h1>Product Details</h1>
         <div class="product">
-            <h2>{{ product.name }}</h2>
-            <p class="price">$ {{ product.price }}</p>
-            <p class="seller">Seller: {{ product.seller_name }}</p>
-            <p class="stars">Rating: {{ product.stars }} Stars</p>
-            <p class="description">{{ product.description }}</p>
-            <p class="seller-id">Seller ID: {{ product.seller_id }}</p>
-            <p class="product-id">Product ID: {{ product.id }}</p>
+            {% set product_name = product[2] %}
+            {% set product_id = product[0] %}
+            {% set seller_id = product[1] %}
+            {% set price = product[3] %}
+            {% set product_stars = product[4] %}
+            {% set description = product[5] %}
+            <h2>{{ product_name }}</h2>
+            <p class="product-id">Product ID: {{ product_id }}</p>
+            <p class="price">Price: ${{ price }}</p>
+            <p class="seller">Seller Name: {{ "seller name" }}</p>
+            <p class="stars">Rating: {{ product_stars }} </p>
+            <p class="description">Description: {{ description }}</p>
+            <!-- <p class="seller-id">Seller ID: {{ seller_id }}</p> -->
         </div>
 
         <a href="{{ url_for('index') }}" class="back-btn">Back to Products</a>
+        <a href="{{ url_for('choose_payment_method') }}" class="buy-btn">Buy {{ product_name }}</a>
     </div>
 </body>
 
