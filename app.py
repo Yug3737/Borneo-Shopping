@@ -44,7 +44,7 @@ def index():
     print(data)
     return render_template("index.html", data=data)
 
-@app.route("/product/<int:product_id>", methods=['GET'])
+@app.route("/view_product/<int:product_id>", methods=['GET'])
 def view_product(product_id):
     cursor = mysql.connection.cursor()
     query = 'SELECT * FROM product WHERE ID = %s'
@@ -53,12 +53,9 @@ def view_product(product_id):
     product_data = cursor.fetchone()
     print(product_data)
     cursor.close()
+    print("HERE")
     return render_template('view_product.html', product=product_data)
-    print(data)
 
-@app.route("/<int:product_id>/choose_payment_method", methods=['GET', 'POST'])
-def choose_payment_method(product_id):
-    return render_template('choose_payment_method.html')
 
 @app.route("/buy_product/<int:product_id>", methods=['GET', 'POST'])
 def buy_product(product_id, buyer_id):
@@ -137,7 +134,7 @@ def logged_in_seller():
 
 
 if __name__ == "__main__":
-    app.run(port=3103)
+    app.run(port=3104, debug=True)
 
 # Comments
 # Wanna be able to buy, if click buy, 
