@@ -98,6 +98,11 @@ def buy_product(product_id):
 @app.route("/past_purchases", methods = ['GET'])
 def past_purchases():
     # Check if user is a buyer
+
+    if 'email' not in session or session['email'] is None:
+        message = "Please login as seller first!"
+        return redirect(url_for('index', message=message))
+      
     buyer_email = session['email']
     buyer_id = session['id']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
