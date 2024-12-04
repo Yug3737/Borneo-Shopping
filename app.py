@@ -117,6 +117,10 @@ def past_purchases():
 def add_product():
     message= ""
     # Check if user is a seller
+    if 'email' not in session or session['email'] is None:
+        message = "Please login as seller first!"
+        return redirect(url_for('index', message=message))
+
     seller_email = session['email']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM seller WHERE email = %s', (seller_email,))
