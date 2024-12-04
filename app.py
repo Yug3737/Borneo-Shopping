@@ -95,6 +95,23 @@ def buy_product(product_id):
         return render_template('buyer_login.html', message=message)
 
 
+@app.route("/past_purchases", methods = ['GET'])
+def past_purchases():
+    # Check if user is a buyer
+    buyer_email = session['email']
+    buyer_id = session['id']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM buyer WHERE email = %s', (buyer_email,))
+    buyer_account = cursor.fetchone() 
+    if buyer_account and 'loggedin' in session:
+        query = 'SELECT ID, name, price from product where ID IN (SELECT product_id from bought_by where buyer_id = %s)'
+        cursor.execute(query, (buyer_id,))
+        past_purchases = cursor.fetchall()
+        return render_template('past_purchases.html', past_purchases=past_purchases, buyer_email= buyer_email)
+    else:
+        return redirect("index.html")
+
+
 
 @app.route("/add_product", methods = ['GET', 'POST'])
 def add_product():
@@ -249,19 +266,13 @@ def register_new_seller():
         message = render_template('index.html', message=message)
     return render_template('register_new_seller.html', message=message)
 
-@app.route("/logged_in_buyer")
-def logged_in_buyer():
-    pass
-
-@app.route("/logged_in_seller")
-def logged_in_seller():
-    pass
+@app.route("/logout", methods=['POST'])
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('email', None)
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
     app.run(port=3104, debug=True)
-
-# Comments
-# Wanna be able to buy, if click buy, 
-# before buying, login page, after purchse, give success.html
-# 
