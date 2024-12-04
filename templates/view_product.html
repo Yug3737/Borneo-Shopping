@@ -28,6 +28,11 @@
         </div>
 
         <a href="{{ url_for('index') }}" class="back-btn">Back to Products</a>
+        <br>
+        <br>
+        <form action="{{ url_for('buy_product', product_id=product_id)}}" method="POST">
+            <button type="submit"> Buy {{ product_name}}</button>
+        </form>
     </div>
 </body>
 

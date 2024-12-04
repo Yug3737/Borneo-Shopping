@@ -1,0 +1,25 @@
+{% extends 'nav.html'%}
+{% block body %}
+{{buyer_email }} Successfully bought {{product_name}}
+
+<br>
+<br>
+
+<body>
+
+    <table border="1" cellpadding="5" cellspacing="5">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+        </tr>
+        {% for purchase in past_purchases %}
+        <tr>
+            <td>{{purchase['ID']}}</td>
+            <td>{{purchase['name']}}</td>
+            <td>{{purchase['price']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock %}
