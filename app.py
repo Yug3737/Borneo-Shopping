@@ -100,7 +100,7 @@ def past_purchases():
     # Check if user is a buyer
 
     if 'email' not in session or session['email'] is None:
-        message = "Please login as seller first!"
+        message = "Please login as buyer first!"
         return redirect(url_for('index', message=message))
       
     buyer_email = session['email']
