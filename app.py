@@ -44,6 +44,7 @@ def index():
     data = cursor.fetchall()
     cursor.close()
     # print(data)
+    # print(data)
     if 'loggedin' in session:
         return render_template("index.html", data=data, email=session['email'])
     else:
@@ -157,10 +158,15 @@ def add_product():
         cursor.execute(query, (seller_ID, name, price,stars , description))
         mysql.connection.commit()
 
-
         query2 = 'SELECT ID from product WHERE name = %s'
         cursor.execute(query2, (name,))
         product_ID= cursor.fetchone()
+        print("new product_ID", product_ID)
+        product_ID = product_ID['ID']
+        print("again new product_id", product_ID)
+
+        print("BEFORE Q3")
+
         print("new product_ID", product_ID)
         product_ID = product_ID['ID']
         print("again new product_id", product_ID)
@@ -171,7 +177,6 @@ def add_product():
         cursor.execute(query3,(seller_ID, product_ID))
         mysql.connection.commit()
         print("QUERY 3 SUCCESS")
-
         message = f'Successfully added product {name}'
         print(message)
     else:
