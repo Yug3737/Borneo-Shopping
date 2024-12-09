@@ -70,3 +70,7 @@ body {
 .logout-btn:hover {
   background-color: #d32f2f;
 }
+
+body{
+  font-family: 'Manrope', sans-serif;
+}

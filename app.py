@@ -143,6 +143,16 @@ def add_product():
         query = "INSERT INTO `product`(`seller_ID`, `name`, `price`, `stars`, `description`) VALUES (%s,%s,%s,%s,%s)"
         cursor.execute(query, (seller_ID, name, price,stars , description))
         mysql.connection.commit()
+
+        query2 = 'SELECT product_id from product WHERE name = %s'
+        cursor.execute(query2, (name,))
+        product_ID= cursor.fetchone()
+        print(" new product_ID", product_ID)
+        query3 = 'INSERT into products_offered VALUES (%s, %s)'
+        cursor.execute(query3,(seller_ID, product_ID))
+        message = f'Successfully added product {name}'
+        print(message)
+
         message = f'Successfully added product {name}'
         print(message)
     else:
@@ -284,4 +294,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(port=3104, debug=True)
+    app.run(port=3105, debug=True)
