@@ -96,6 +96,7 @@ def buy_product(product_id):
         query2 = "INSERT INTO `bought_by`(`product_ID`, `buyer_ID`) VALUES (%s,%s)"
         cursor.execute(query2, (product_id, buyer_id))
         mysql.connection.commit()
+        product_name = product_name['name']
         message = f"{buyer_email} successfully purchased {product_name}"
 
         query3 = 'SELECT ID, name, price from product where ID IN (SELECT product_id from bought_by where buyer_id = %s)'
