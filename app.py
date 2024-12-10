@@ -110,6 +110,11 @@ def buy_product(product_id):
 @app.route("/past_purchases", methods = ['GET'])
 def past_purchases():
     # Check if user is a buyer
+
+    if 'email' not in session or session['email'] is None:
+        message = "Please login as buyer first!"
+        return redirect(url_for('index', message=message))
+      
     buyer_email = session['email']
     buyer_id = session['id']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -129,6 +134,10 @@ def past_purchases():
 def add_product():
     message= ""
     # Check if user is a seller
+    if 'email' not in session or session['email'] is None:
+        message = "Please login as seller first!"
+        return redirect(url_for('index', message=message))
+
     seller_email = session['email']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM seller WHERE email = %s', (seller_email,))
@@ -147,6 +156,7 @@ def add_product():
         cursor.execute(query, (seller_ID, name, price,stars , description))
         mysql.connection.commit()
 
+
         query2 = 'SELECT ID from product WHERE name = %s'
         cursor.execute(query2, (name,))
         product_ID= cursor.fetchone()
@@ -160,6 +170,7 @@ def add_product():
         cursor.execute(query3,(seller_ID, product_ID))
         mysql.connection.commit()
         print("QUERY 3 SUCCESS")
+
         message = f'Successfully added product {name}'
         print(message)
     else:
@@ -326,4 +337,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(port=3102, debug=True)
+    app.run(port=3105, debug=True)
+
