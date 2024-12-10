@@ -42,7 +42,7 @@ def index():
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()
-    print(data)
+    # print(data)
     if 'loggedin' in session:
         return render_template("index.html", data=data, email=session['email'])
     else:
@@ -56,8 +56,20 @@ def view_product(product_id):
     mysql.connection.commit()
     product_data = cursor.fetchone()
     print(product_data)
+    query2 = 'SELECT seller_ID from products_offered where product_ID = %s'
+    cursor.execute(query2, (product_id,))
+    seller_id = cursor.fetchone()
+    seller_id = seller_id[0]
+    print("SELLER_ID", seller_id)
+
+    query3 = 'SELECT name from seller where id = %s'
+    cursor.execute(query3, (seller_id,))
+    seller_name = cursor.fetchone()
+    print("OBTAINED SELLER NAME", seller_name)
+    # because the return value for default cursor() is tuple
+    seller_name = seller_name[0]
     cursor.close()
-    return render_template('view_product.html', product=product_data)
+    return render_template('view_product.html', product=product_data, seller_name=seller_name)
 
 
 @app.route("/buy_product/<int:product_id>", methods=['GET', 'POST'])
@@ -144,14 +156,20 @@ def add_product():
         cursor.execute(query, (seller_ID, name, price,stars , description))
         mysql.connection.commit()
 
-        query2 = 'SELECT product_id from product WHERE name = %s'
+
+        query2 = 'SELECT ID from product WHERE name = %s'
         cursor.execute(query2, (name,))
         product_ID= cursor.fetchone()
-        print(" new product_ID", product_ID)
+        print("new product_ID", product_ID)
+        product_ID = product_ID['ID']
+        print("again new product_id", product_ID)
+
+        print("BEFORE Q3")
+
         query3 = 'INSERT into products_offered VALUES (%s, %s)'
         cursor.execute(query3,(seller_ID, product_ID))
-        message = f'Successfully added product {name}'
-        print(message)
+        mysql.connection.commit()
+        print("QUERY 3 SUCCESS")
 
         message = f'Successfully added product {name}'
         print(message)
@@ -174,7 +192,6 @@ def add_product():
 @app.route("/buyer_login", methods=["GET","POST"])
 def buyer_login():
     message = ""
-    print("REQUES.FORM")
     print(request.form)
     if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
         email = request.form['email']
@@ -223,7 +240,18 @@ def register_new_buyer():
             query = 'INSERT INTO `buyer`(`name`, `address`, `phone_number`, `email`, `password`) VALUES (%s,%s,%s,%s,%s);'
             cursor.execute(query, (name, address, phone_number, email, hashed_password))
             mysql.connection.commit()
-            message = f"Successful Registration for {name}"
+
+            query2 = 'SELECT id from buyer where name = %s'
+            cursor.execute(query2, (name,))
+            buyer_id = cursor.fetchone()
+            buyer_id = buyer_id['id']
+            print("after buyer_id", buyer_id)
+
+            query3 = 'INSERT INTO `buyer_ph_numbers`(`ID`, `phone_number`) VALUES (%s,%s)'
+            cursor.execute(query3, (buyer_id, phone_number))
+            mysql.connection.commit()
+            print("BUYER PHONE NUMBER ADDEED")
+            message = f"Successful buyer Registration for {name}"
     elif request.method == 'POST':
         message = render_template('index.html', message=message)
 
@@ -280,10 +308,25 @@ def register_new_seller():
             query = 'INSERT INTO `seller`(`name`, `address`, `phone_number`, `email`, `password`) VALUES (%s,%s,%s,%s,%s);'
             cursor.execute(query, (name, address, phone_number, email, hashed_password))
             mysql.connection.commit()
-            message = f"Successful Registration for {name}"
+
+            query2 = 'SELECT id from seller where name = %s'
+            cursor.execute(query2, (name,))
+            seller_id = cursor.fetchone()
+            seller_id = seller_id['id']
+            print("after seller_id", seller_id)
+
+            query3 = 'INSERT INTO `seller_ph_numbers`(`ID`, `phone_number`) VALUES (%s,%s)'
+            cursor.execute(query3, (seller_id, phone_number))
+            mysql.connection.commit()
+            print("SELLER PHONE NUMBER ADDEED")
+            message = f"Successful SELLER Registration for {name}"
     elif request.method == 'POST':
         message = render_template('index.html', message=message)
     return render_template('register_new_seller.html', message=message)
+
+@app.route("/admin", methods=['GET', 'POST'])
+def admin():
+    pass
 
 @app.route("/logout", methods=['POST'])
 def logout():
@@ -295,3 +338,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run(port=3105, debug=True)
+
