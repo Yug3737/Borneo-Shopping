@@ -3,7 +3,15 @@
 
 
 <body>
+    {% if email %}
     <p>Welcome, {{email}}</p>
+    {% endif %}
+
+    {% if message %}
+    <div class="Alert message-warning">{{ message }}</div>
+    {% endif %}
+    <br>
+
     <table border="1" cellpadding="5" cellspacing="5">
         <tr>
             <th>Name</th>

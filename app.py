@@ -37,6 +37,7 @@ mysql = MySQL(app)
 
 @app.route("/")
 def index():
+    message = request.args.get('message', '')
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT name, price, ID from product")
     mysql.connection.commit()
@@ -46,7 +47,7 @@ def index():
     if 'loggedin' in session:
         return render_template("index.html", data=data, email=session['email'])
     else:
-        return render_template("index.html", data=data, email=None)
+        return render_template("index.html", data=data, email=None, message=message)
 
 @app.route("/view_product/<int:product_id>", methods=['GET'])
 def view_product(product_id):
@@ -112,7 +113,7 @@ def past_purchases():
     # Check if user is a buyer
 
     if 'email' not in session or session['email'] is None:
-        message = "Please login as buyer first!"
+        message = "Please login as a buyer first!"
         return redirect(url_for('index', message=message))
       
     buyer_email = session['email']
@@ -135,7 +136,7 @@ def add_product():
     message= ""
     # Check if user is a seller
     if 'email' not in session or session['email'] is None:
-        message = "Please login as seller first!"
+        message = "Please login as a seller first!"
         return redirect(url_for('index', message=message))
 
     seller_email = session['email']
@@ -178,16 +179,6 @@ def add_product():
         return render_template('add_product.html', message=message)
     return redirect(url_for('index', message=message))
     
-
-# @app.route("/new_buyer", methods= ['POST', 'GET'])
-# def new_buyer():
-#     return render_template("new_buyer.html")
-
-
-# @app.route("/new_seller")
-# def new_seller():
-#     return render_template("new_seller.html")
-
 
 @app.route("/buyer_login", methods=["GET","POST"])
 def buyer_login():
@@ -337,5 +328,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(port=3105, debug=True)
+    app.run(port=9998, debug=True)
 
