@@ -41,6 +41,7 @@
 }
 
 body {
+  font-family: 'Manrope', sans-serif;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -69,4 +70,8 @@ body {
 
 .logout-btn:hover {
   background-color: #d32f2f;
+}
+
+body{
+  font-family: 'Manrope', sans-serif;
 }

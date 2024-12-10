@@ -2,6 +2,13 @@
 -- authors: Yug Patel
 -- last modified: 12 Nov 2024
 
+CREATE TABLE IF NOT EXISTS admin(
+    ID INT AUTO_INCREMENT,
+    email VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL UNIQUE,
+    PRIMARY KEY (ID)
+); 
+
 CREATE TABLE IF NOT EXISTS buyer(
     ID INT AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
