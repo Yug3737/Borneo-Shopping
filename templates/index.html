@@ -23,9 +23,6 @@
             <td>{{ row[0] }}</td>
             <td>{{ row[1] }}</td>
             <td><a href="{{ url_for('view_product', product_id=row[2] )}}">Click Here</a></td>
-            <!-- {% for d in row %}
-            <td>{{d}}</td>
-            {% endfor %} -->
         </tr>
         {% endfor %}
     </table>

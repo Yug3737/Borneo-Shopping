@@ -25,6 +25,8 @@ MYSQL_HOST = variables['MYSQL_HOST']
 MYSQL_USER = variables['MYSQL_USER']
 MYSQL_PASSWORD = variables['MYSQL_PASSWORD']
 MYSQL_DB = variables['MYSQL_DB']
+ADMIN_YUG_PW = variables['ADMIN_YUG_PW']
+ADMIN_NICK_PW = variables['ADMIN_NICK_PW']
 
 app.secret_key = BORNEO_SECRET_KEY
 app.config["MYSQL_HOST"] = MYSQL_HOST
@@ -168,12 +170,6 @@ def add_product():
 
         print("BEFORE Q3")
 
-        print("new product_ID", product_ID)
-        product_ID = product_ID['ID']
-        print("again new product_id", product_ID)
-
-        print("BEFORE Q3")
-
         query3 = 'INSERT into products_offered VALUES (%s, %s)'
         cursor.execute(query3,(seller_ID, product_ID))
         mysql.connection.commit()
@@ -185,6 +181,8 @@ def add_product():
         return render_template('add_product.html', message=message)
     return redirect(url_for('index', message=message))
     
+    
+
 
 @app.route("/buyer_login", methods=["GET","POST"])
 def buyer_login():
@@ -324,6 +322,90 @@ def register_new_seller():
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
     pass
+
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    message= ""
+    # Check if user is a admin
+    if 'email' not in session or session['email'] is None:
+        message = "Please login as Admin first!"
+        return redirect(url_for('admin_login', message=message))
+
+    admin_email = session['email']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM admin WHERE email = %s', (admin_email,))
+    admin_account = cursor.fetchone() 
+
+    if 'loggedin' in session and admin_account :
+        print("INSIDE ADMIN IF")
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("select ID, name from product")
+        products = cursor.fetchall()
+
+        cursor.execute("select ID, name from seller")
+        sellers = cursor.fetchall()
+
+        cursor.execute("select ID, name from buyer")
+        buyers = cursor.fetchall()
+
+        message = f'Successfully retrieved all 3'
+        print(message)
+        return render_template('admin_dashboard.html', message=message, products=products, sellers=sellers, buyers=buyers)
+
+    message = "Please log in as an Admin."
+    session['message'] = message
+    return redirect(url_for('admin_login', message=message))
+    # return render_template('admin_dashboard.html')
+
+@app.route("/admin_login", methods=["GET", "POST"])
+def admin_login():
+    message = ""
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        query = "SELECT * from admin WHERE email = %s"
+        cursor.execute(query, (email,))
+        account = cursor.fetchone()
+        
+        if account and password in [ADMIN_NICK_PW, ADMIN_YUG_PW]:
+            session['loggedin'] = True
+            session['id'] = account['ID']
+            session['email'] = account['email']
+            return redirect(url_for('admin_dashboard'))
+        else:
+            message = "Incorrect email/password"
+    return render_template('admin_login.html', message=message)
+
+@app.route("/delete_product/<int:product_id>", methods=['POST'])
+def delete_product(product_id):
+    print("INSIDE def delete_product(product_id)")
+    message = ""
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    query = "delete from product where ID = %s"
+    cursor.execute(query, (product_id,))
+    message = f"Successfully Deleted product ID {product_id}"
+    return redirect(url_for('admin_dashboard', message=message))
+
+@app.route("/delete_seller/<int:seller_id>", methods=['POST'])
+def delete_seller(seller_id):
+    print("INSIDE def dele seller(product_id)")
+    message = ""
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    query = "delete from seller where ID = %s"
+    cursor.execute(query, (seller_id,))
+    message = f"Successfully Deleted Seller ID {seller_id}"
+    return redirect(url_for('admin_dashboard', message=message))
+
+@app.route("/delete_buyer/<int:buyer_id>", methods=['POST'])
+def delete_buyer(buyer_id):
+    print("INSIDE def delete_buyer(product_id)")
+    message = ""
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    query = "delete from buyer where ID = %s"
+    cursor.execute(query, (buyer_id,))
+    message = f"Successfully Deleted Buyer ID {buyer_id}"
+    return redirect(url_for('admin_dashboard', message=message))
 
 @app.route("/logout", methods=['POST'])
 def logout():
