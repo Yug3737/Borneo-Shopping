@@ -1,0 +1,90 @@
+{% extends "nav.html" %}
+{% block body %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <h2>Products</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product['ID'] }}</td>
+                <td>{{ product['name'] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_product', product_id=product['ID']) }}" method="post"
+                      style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Buyers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for buyer in buyers %}
+            <tr>
+                <td>{{ buyer['ID']}}</td>
+                <td>{{ buyer['name'] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_buyer', buyer_id=buyer['ID']) }}" method="post"
+                      style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Sellers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for seller in sellers %}
+            <tr>
+                <td>{{ seller['ID'] }}</td>
+                <td>{{ seller['name'] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_seller', seller_id=seller['ID']) }}" method="post"
+                      style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+{% endblock %}
